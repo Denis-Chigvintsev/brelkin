@@ -1,0 +1,60 @@
+version: '3.3'
+
+services:
+  frontend:
+    container_name: tarelkin-frontend
+    build: ./brello-app
+
+    restart: always
+
+    depends_on:
+      - backend
+    networks:
+      - tarelkin-network
+
+  backend:
+    container_name: tarelkin-backend
+    build: ./brello-backend
+
+    restart: always
+    depends_on:
+      - mongo_fvision
+    networks:
+      - tarelkin-network
+  mongo_fvision:
+    container_name: tarelkin-mongo
+    image: mongo:7.0
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USER_NAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+    ports:
+      - ${MONGO_PORT_1}:${MONGO_PORT_2}
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - mongo_fvision:/data/db
+    networks:
+      - tarelkin-network
+
+  nginx:
+    container_name: tarelkin-nginx
+    image: nginx:1.29.7
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+
+    depends_on:
+      - frontend
+    networks:
+      - tarelkin-network
+
+volumes:
+  mongo_fvision:
+    driver: local
+
+networks:
+  tarelkin-network:
+    driver: bridge

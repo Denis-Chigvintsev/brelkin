@@ -1,0 +1,12 @@
+.root {
+  padding-inline: 16px;
+
+  width: 100%;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .root {
+    padding-inline: 32px;
+  }
+}
