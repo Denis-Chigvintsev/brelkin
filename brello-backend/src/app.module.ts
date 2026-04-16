@@ -13,7 +13,7 @@ import { IamModule } from './iam/iam.module';
     UsersModule,
     ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      'mongodb://82.147.67.228:27017/project?authSource=admin',
+      'mongodb://frontend:vision@82.147.67.228:27017/project?authSource=admin',
     ),
     IamModule,
   ],
