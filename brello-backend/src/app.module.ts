@@ -12,7 +12,9 @@ import { IamModule } from './iam/iam.module';
     CardsModule,
     UsersModule,
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_CONNECTION as string),
+    MongooseModule.forRoot(
+      'mongodb://82.147.67.228:27017/project?authSource=admin',
+    ),
     IamModule,
   ],
   controllers: [AppController],
