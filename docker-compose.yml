@@ -44,8 +44,9 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/Brelkin.cer:/etc/nginx/conf.d/Brelkin.cer
+      - ./nginx/brelkin.privkey.pem:/etc/nginx/conf.d/brelkin.privkey.pem
     depends_on:
       - frontend
     networks:
