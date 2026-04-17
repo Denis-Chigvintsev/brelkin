@@ -45,7 +45,7 @@ services:
       - 80:80
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
-      - ./nginx/brelkin.crt:/etc/pki/nginx/brelkin.crt
+      - ./nginx/brelkin.cer:/etc/pki/nginx/brelkin.cer
       - ./nginx/brelkin.key:/etc/pki/nginx/private/brelkin.key
     depends_on:
       - frontend
